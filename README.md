@@ -44,8 +44,8 @@ Sistem Antrian Puskesmas Digital adalah aplikasi berbasis web menggunakan **Pyth
 
 ### 1️⃣ Clone / Download Project
    
-        git clone https://github.com/Ahmadsanusi18/Antrean-RS.git
-        cd Antrean-RS
+    git clone https://github.com/Ahmadsanusi18/Antrean-RS.git
+    cd Antrean-RS
    
 ### 2️⃣ Aktifkan Virtual Environment
     
