@@ -1,0 +1,179 @@
+<!-- ========================================
+     Author    : Ahmad Sanusi
+     Instagram : @a.saan_
+     ======================================== -->
+
+
+
+{% extends "navbar.html" %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col items-center">
+    
+    <div class="px-6 pt-16 pb-20 w-full max-w-6xl mx-auto flex flex-col items-center">
+        
+        <header class="w-full max-w-4xl text-center mb-20 animate-fade-in">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-light border border-primary/20 mb-8">
+                <span class="relative flex h-2 w-2">
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                <span class="text-[10px] font-black text-primary-dark uppercase tracking-[0.2em]">Profil Layanan Digital</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black text-slate-900 tracking-tight leading-tight">
+                Melayani dengan <br> 
+                <span class="text-primary italic relative">
+                    Teknologi Modern
+                    <svg class="absolute -bottom-2 left-0 w-full h-3 text-primary/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 5 Q 25 0 50 5 T 100 5" stroke="currentColor" stroke-width="4" fill="transparent"/>
+                    </svg>
+                </span>
+            </h1>
+            
+            <p class="text-slate-500 mt-10 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+                Membangun ekosistem kesehatan yang efisien. Kami percaya bahwa akses kesehatan yang baik dimulai dari sistem antrian yang tidak melelahkan.
+            </p>
+        </header>
+
+        <main class="w-full grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group bg-white p-10 rounded-[3rem] border-2 border-slate-50 shadow-sm hover:border-primary hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="w-16 h-16 bg-primary rounded-[1.5rem] flex items-center justify-center mb-8 shadow-lg shadow-primary/30 group-hover:rotate-6 transition-transform">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-black text-slate-800 mb-4">Misi Kecepatan</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Proses pendaftaran yang dipangkas menjadi hitungan detik. Kami memprioritaskan waktu Anda.</p>
+            </div>
+
+            <div class="group bg-slate-900 p-10 rounded-[3rem] shadow-2xl shadow-slate-900/20 transform hover:-translate-y-2 transition-all duration-300">
+                <div class="w-16 h-16 bg-slate-800 rounded-[1.5rem] flex items-center justify-center mb-8 border border-slate-700">
+                    <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.040A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-black text-white mb-4">Aman & Terpadu</h3>
+                <p class="text-slate-400 text-sm leading-relaxed font-medium">Sistem tertutup menjamin validitas nomor antrian dan transparansi layanan.</p>
+            </div>
+
+            <div class="group bg-white p-10 rounded-[3rem] border-2 border-slate-50 shadow-sm hover:border-primary hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div class="w-16 h-16 bg-emerald-50 rounded-[1.5rem] flex items-center justify-center mb-8 border border-emerald-100">
+                    <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-black text-slate-800 mb-4">Inklusif</h3>
+                <p class="text-slate-500 text-sm leading-relaxed font-medium">Antarmuka ramah pengguna dirancang khusus untuk lansia dan pasien prioritas.</p>
+            </div>
+        </main>
+
+        <section class="w-full mt-28 bg-white rounded-[3rem] p-4 shadow-sm border border-slate-100 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="text-center py-10">
+                <div class="text-4xl font-black text-slate-900 tracking-tighter">20+</div>
+                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">Poliklinik</div>
+            </div>
+            <div class="text-center py-10 bg-primary-light/30 rounded-[2.5rem]">
+                <div class="text-4xl font-black text-primary tracking-tighter">500+</div>
+                <div class="text-[10px] font-black text-primary-dark uppercase tracking-widest mt-2">Pasien/Hari</div>
+            </div>
+            <div class="text-center py-10">
+                <div class="text-4xl font-black text-slate-900 tracking-tighter">100%</div>
+                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">Otomatis</div>
+            </div>
+            <div class="text-center py-10">
+                <div class="text-4xl font-black text-slate-900 tracking-tighter">24/7</div>
+                <div class="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">Live Support</div>
+            </div>
+        </section>
+
+        <section class="w-full mt-32">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-slate-900 uppercase tracking-tight">Alur <span class="text-primary">Pendaftaran</span></h2>
+                <div class="h-1.5 w-20 bg-primary mx-auto mt-4 rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="relative bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm text-center">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-black shadow-xl">1</div>
+                    <h4 class="text-xl font-black text-slate-800 mt-4 mb-3">Pilih Layanan</h4>
+                    <p class="text-slate-500 text-sm font-medium">Pilih poliklinik tujuan di mesin mandiri lobi utama.</p>
+                </div>
+                <div class="relative bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm text-center">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-black shadow-xl">2</div>
+                    <h4 class="text-xl font-black text-slate-800 mt-4 mb-3">Terima Nomor</h4>
+                    <p class="text-slate-500 text-sm font-medium">Ambil struk nomor antrian yang tercetak otomatis.</p>
+                </div>
+                <div class="relative bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm text-center">
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-slate-900 text-white rounded-full flex items-center justify-center font-black shadow-xl">3</div>
+                    <h4 class="text-xl font-black text-slate-800 mt-4 mb-3">Tunggu Panggilan</h4>
+                    <p class="text-slate-500 text-sm font-medium">Duduk santai dan pantau panggilan otomatis di monitor TV.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full mt-32">
+            <h2 class="text-3xl font-black text-slate-900 uppercase tracking-tight mb-12">Fasilitas <span class="text-primary">Kami</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="h-64 bg-slate-200 rounded-[2rem] overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=500" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" alt="Ruang Tunggu">
+                </div>
+                <div class="h-64 bg-slate-200 rounded-[2rem] overflow-hidden mt-8 group">
+                    <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=500" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" alt="Poli">
+                </div>
+                <div class="h-64 bg-slate-200 rounded-[2rem] overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1581595224492-38411d8183f0?auto=format&fit=crop&w=500" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" alt="Alat">
+                </div>
+                <div class="h-64 bg-slate-200 rounded-[2rem] overflow-hidden mt-8 group">
+                    <img src="https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&w=500" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500" alt="Lab">
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full max-w-4xl mt-32 mb-10">
+            <div class="bg-slate-900 rounded-[3.5rem] p-10 md:p-16 relative overflow-hidden">
+                <h2 class="text-3xl font-black text-white mb-10 relative z-10">Paling Sering <span class="text-primary italic">Ditanyakan</span></h2>
+                <div class="space-y-6 relative z-10">
+                    <div class="border-b border-white/10 pb-6">
+                        <h4 class="text-lg font-bold text-white mb-2">Apakah pendaftaran ini berbayar?</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Sistem antrian digital ini sepenuhnya gratis untuk kenyamanan pasien.</p>
+                    </div>
+                    <div class="border-b border-white/10 pb-6">
+                        <h4 class="text-lg font-bold text-white mb-2">Jam berapa pengambilan nomor dimulai?</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Dibuka setiap hari kerja mulai pukul 07.30 WIB.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="w-full bg-slate-900 text-white pt-20 pb-10 px-6 mt-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-12 border-b border-slate-800 pb-16">
+                <div>
+                    <h3 class="text-2xl font-black italic">RSUD <span class="text-primary">DIGITAL</span></h3>
+                    <p class="text-slate-400 mt-4 leading-relaxed text-sm">Melayani dengan sepenuh hati melalui inovasi teknologi untuk kesehatan bangsa.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-primary">Navigasi</h4>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li><a href="/" class="hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="/user" class="hover:text-white transition-colors">Ambil Antrian</a></li>
+                        <li><a href="/display" class="hover:text-white transition-colors">Monitor TV</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-primary">Kontak</h4>
+                    <p class="text-slate-400 text-sm">Jl. Kesehatan Raya No. 123</p>
+                    <p class="text-slate-400 text-sm mt-2">Email: info@puskesmasdigital.id</p>
+                </div>
+            </div>
+            <div class="text-center mt-10 text-slate-500 text-[10px] tracking-[0.3em] uppercase font-bold">
+                &copy; 2024 Puskesmas Digital &bull; Smart Queue System
+            </div>
+        </div>
+    </footer>
+</div>
+
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+</style>
+{% endblock %}

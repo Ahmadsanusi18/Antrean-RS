@@ -1,0 +1,139 @@
+<!-- ========================================
+     Author    : Ahmad Sanusi
+     Instagram : @a.saan_
+     ======================================== -->
+
+
+
+{% extends "navbar.html" %}
+{% block content %}
+<div class="max-w-7xl mx-auto pt-10 pb-20 px-4 md:px-8">
+    
+    <header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f5f4] border border-[#129990]/20 mb-3">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#129990] opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#129990]"></span>
+                </span>
+                <span class="text-[10px] font-bold text-[#129990] uppercase tracking-wider">Live Monitoring</span>
+            </div>
+            <h1 class="text-3xl font-black text-slate-800 tracking-tight">Dashboard Antrian</h1>
+            <p class="text-slate-500 mt-1 font-medium">Kelola alur pasien poliklinik secara efisien.</p>
+        </div>
+        <a href="/admin/poli" class="flex items-center gap-3 p-3.5 bg-[#129990] text-white rounded-2xl transition-all duration-200 font-bold shadow-lg shadow-[#129990]/20 hover:bg-[#0e7a73] hover:shadow-xl hover:-translate-y-0.5 group">
+    <svg class="w-5 h-5 text-white/80 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+    </svg>
+    <span class="text-sm tracking-tight">Manajemen Poli</span>
+</a>
+    </header>
+
+    {% for poli, queues in data.items() %}
+    <section class="mb-12">
+        <div class="flex items-center justify-between mb-5 px-2">
+            <h2 class="text-xl font-extrabold text-slate-800 flex items-center gap-3">
+                <span class="w-1.5 h-7 bg-[#129990] rounded-full"></span>
+                {{ poli }}
+            </h2>
+            <div class="flex items-center gap-2 bg-white px-4 py-1.5 rounded-full border border-slate-200 shadow-sm">
+                <span class="text-xs font-bold text-slate-400 uppercase">Total:</span>
+                <span class="text-sm font-black text-[#129990]">{{ queues|length }}</span>
+            </div>
+        </div>
+
+        {% if queues %}
+        <div class="overflow-hidden shadow-sm border border-slate-200 rounded-[2rem] bg-white">
+            
+            <div class="hidden md:block overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-50 border-b border-slate-100">
+                        <tr>
+                            <th class="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest">No. Antrian</th>
+                            <th class="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest">Status</th>
+                            <th class="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest">Waktu Registrasi</th>
+                            <th class="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest text-right">Kendali Antrian</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50">
+                        {% for q in queues %}
+                        <tr class="hover:bg-[#e7f5f4]/30 transition-colors group">
+                            <td class="px-8 py-5">
+                                <span class="text-2xl font-black text-black tracking-tighter">{{ q[1] }}</span>
+                            </td>
+                            <td class="px-8 py-5">
+                                <span class="px-4 py-1.5 rounded-full text-[11px] font-bold uppercase tracking-tight
+                                    {% if q[2] == 'Menunggu' %} bg-amber-50 text-amber-600 border border-amber-100
+                                    {% else %} bg-emerald-50 text-emerald-600 border border-emerald-100 {% endif %}">
+                                    {{ q[2] }}
+                                </span>
+                            </td>
+                            <td class="px-8 py-5 text-sm font-medium text-slate-500">{{ q[3] }}</td>
+                            <td class="px-8 py-5 text-right">
+                                <div class="flex justify-end gap-3 opacity-90 group-hover:opacity-100 transition-opacity">
+                                    <a href="/admin/panggil/{{ q[0] }}" class="inline-flex items-center px-6 py-2.5 bg-[#129990] hover:bg-[#0e7a73] text-white text-xs font-black rounded-xl transition-all shadow-md shadow-[#129990]/20 active:scale-95">
+                                        PANGGIL
+                                    </a>
+                                    <a href="/admin/selesai/{{ q[0] }}" class="inline-flex items-center px-6 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-black rounded-xl transition-all active:scale-95">
+                                        SELESAI
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="md:hidden divide-y divide-slate-50">
+                {% for q in queues %}
+                <div class="p-6 space-y-5">
+                    <div class="flex justify-between items-center">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Nomor</span>
+                            <span class="text-3xl font-black text-[#129990] tracking-tighter">{{ q[1] }}</span>
+                        </div>
+                        <span class="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest
+                            {% if q[2] == 'Menunggu' %} bg-amber-50 text-amber-600 border border-amber-100
+                            {% else %} bg-emerald-50 text-emerald-600 border border-emerald-100 {% endif %}">
+                            {{ q[2] }}
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-400 italic">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Waktu: {{ q[3] }}
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a href="/admin/panggil/{{ q[0] }}" class="flex justify-center items-center py-3.5 bg-[#129990] text-white rounded-2xl text-xs font-black shadow-lg shadow-[#129990]/20 active:scale-95">
+                            PANGGIL
+                        </a>
+                        <a href="/admin/selesai/{{ q[0] }}" class="flex justify-center items-center py-3.5 bg-slate-50 border border-slate-200 text-slate-600 rounded-2xl text-xs font-black active:scale-95">
+                            SELESAI
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+        {% else %}
+        <div class="bg-white border-2 border-dashed border-slate-200 rounded-[2rem] p-12 text-center transition-all hover:border-[#129990]/30 group">
+            <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <svg class="w-8 h-8 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            </div>
+            <p class="text-slate-400 font-bold uppercase text-xs tracking-widest">Antrian Kosong</p>
+            <p class="text-slate-400 text-sm mt-1 font-medium">Belum ada pasien terdaftar untuk {{ poli }}.</p>
+        </div>
+        {% endif %}
+    </section>
+    {% endfor %}
+</div>
+
+<script>
+    // Refresh halus setiap 7 detik
+    setInterval(() => {
+        window.location.reload();
+    }, 5000);
+</script>
+{% endblock %}

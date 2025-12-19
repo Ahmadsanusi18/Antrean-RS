@@ -1,0 +1,89 @@
+<!-- ========================================
+     Author    : Ahmad Sanusi
+     Instagram : @a.saan_
+     ======================================== -->
+
+
+{% extends "navbar.html" %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col items-center px-6 pt-[8px]">
+
+    <header class="w-full max-w-4xl text-center my-10 animate-fade-in">
+        <div class="flex justify-center mb-6">
+            <div class="p-3 bg-white rounded-3xl shadow-sm border border-slate-100">
+                <img src="{{ url_for('static', filename='img/logo.jpg') }}" 
+                     alt="Logo Puskesmas" 
+                     class="h-16 w-auto object-contain">
+            </div>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-none">
+            Pilih <span class="text-primary">Layanan</span>
+        </h1>
+        <p class="text-slate-500 mt-4 text-base md:text-lg max-w-xl mx-auto font-medium">
+            Ketuk pada poli tujuan untuk mendapatkan nomor antrian secara otomatis.
+        </p>
+    </header>
+
+    <main class="w-full max-w-5xl">
+        <form action="/ambil" method="post">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                {% for s in services %}
+                <button type="submit" name="service_id" value="{{ s[0] }}" 
+                    class="group relative bg-white border-2 border-slate-100 hover:border-primary p-1 rounded-[2.5rem] transition-all duration-200 active:scale-[0.98]">
+                    
+                    <div class="bg-white p-6 rounded-[2.3rem] flex items-center justify-between group-hover:bg-primary-light transition-colors">
+                        <div class="flex items-center space-x-5">
+                            <div class="w-14 h-14 bg-slate-50 group-hover:bg-primary rounded-2xl flex items-center justify-center transition-all duration-200 shadow-sm group-hover:shadow-primary/20 group-hover:shadow-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-slate-400 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </div>
+
+                            <div class="text-left">
+                                <h3 class="text-xl font-black text-slate-800 tracking-tight">{{ s[1] }}</h3>
+                                <p class="text-xs font-bold text-primary uppercase tracking-widest mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity">Ambil Tiket &rarr;</p>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase group-hover:hidden transition-all">Klik Untuk Antre</p>
+                            </div>
+                        </div>
+
+                        <div class="pr-2">
+                            <div class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all">
+                                <svg class="w-5 h-5 text-slate-300 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                {% endfor %}
+
+            </div>
+        </form>
+    </main>
+
+    <footer class="mt-auto py-12 text-center">
+        <div class="flex items-center justify-center gap-4">
+            <div class="h-px w-8 bg-slate-200"></div>
+            <p class="text-[10px] text-slate-400 font-black uppercase tracking-[0.3em] italic">
+                Puskesmas Digital &bull; Smart Queue System
+            </p>
+            <div class="h-px w-8 bg-slate-200"></div>
+        </div>
+    </footer>
+
+</div>
+
+<style>
+    /* Animasi fade-in ringan tanpa blur */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-out forwards;
+    }
+</style>
+{% endblock %}

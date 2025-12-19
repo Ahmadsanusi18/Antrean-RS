@@ -1,0 +1,158 @@
+<!-- ========================================
+     Author    : Ahmad Sanusi
+     Instagram : @a.saan_
+     ======================================== -->
+
+
+
+{% extends "navbar.html" %}
+
+{% block content %}
+<div class="fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-[#e7f5f4]/60 blur-[120px]"></div>
+    <div class="absolute top-[20%] -right-[10%] w-[30%] h-[30%] rounded-full bg-emerald-50/50 blur-[100px]"></div>
+</div>
+
+<div class="pt-10 pb-20 px-6 max-w-6xl mx-auto min-h-screen">
+    <div class="grid lg:grid-cols-2 gap-16 items-start mb-32">
+        <div class="space-y-8 animate-fade-in-up">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e7f5f4] border border-[#129990]/20">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#129990] opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#129990]"></span>
+                </span>
+                <span class="text-xs font-bold text-[#0e7a73] uppercase tracking-widest">Sistem Smart Antrian v2.0</span>
+            </div>
+
+            <h1 class="text-6xl font-black text-slate-900 leading-[1.1] tracking-tight">
+                Layanan Kesehatan <br>
+                <span class="bg-gradient-to-r from-[#129990] to-emerald-600 bg-clip-text text-fill-color text-transparent">
+                    Jauh Lebih Cepat.
+                </span>
+            </h1>
+
+            <p class="text-slate-600 text-xl leading-relaxed max-w-lg">
+                Solusi digital untuk memangkas waktu tunggu demi kenyamanan pasien dan efisiensi tim medis.
+            </p>
+
+            <div class="flex flex-wrap gap-4 pt-4">
+                <a href="/user" class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-[#129990] rounded-2xl hover:bg-[#0e7a73] shadow-xl shadow-[#129990]/20 active:scale-95">
+                    Ambil Antrian Sekarang
+                </a>
+            </div>
+        </div>
+
+        <div class="relative space-y-6">
+            <div class="group bg-white p-8 rounded-[2.5rem] shadow-xl shadow-slate-200/50 border border-slate-100 hover:-translate-y-2 transition-all duration-300">
+                <div class="flex items-center gap-6">
+                    <div class="flex-shrink-0 w-16 h-16 bg-[#129990] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-[#129990]/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-slate-800">Statistik Real-time</h3>
+                        <p class="text-slate-500 mt-1 font-medium text-sm">Data kepadatan poli terupdate otomatis.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="group bg-slate-900 p-8 rounded-[2.5rem] shadow-2xl shadow-slate-900/20 hover:-translate-y-2 transition-all duration-300">
+                <div class="flex items-center gap-6">
+                    <div class="flex-shrink-0 w-16 h-16 bg-slate-800 rounded-2xl flex items-center justify-center text-[#129990] border border-slate-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                        </svg>
+                    </div>
+                    <div class="text-white">
+                        <h3 class="text-xl font-bold">Smart Admin Panel</h3>
+                        <p class="text-slate-400 mt-1 font-medium text-sm">Panggil suara otomatis untuk setiap poli.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="mb-32">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-black text-slate-900">Fasilitas <span class="text-primary">Kami</span></h2>
+            <p class="text-slate-500 mt-4">Lingkungan bersih dan nyaman untuk kesembuhan Anda.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="aspect-video bg-slate-200 rounded-[2rem] overflow-hidden border-4 border-white shadow-lg">
+                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Ruang Tunggu">
+            </div>
+            <div class="aspect-video bg-slate-200 rounded-[2rem] overflow-hidden border-4 border-white shadow-lg">
+                <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Poli Umum">
+            </div>
+            <div class="aspect-video bg-slate-200 rounded-[2rem] overflow-hidden border-4 border-white shadow-lg">
+                <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=800" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" alt="Alat Medis">
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-32">
+        <div class="bg-white rounded-[3rem] p-12 border border-slate-100 shadow-xl shadow-slate-200/50">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-primary font-black uppercase tracking-widest text-sm">Keunggulan</span>
+                    <h2 class="text-4xl font-black text-slate-900 mt-4 leading-tight">Mengapa Memilih Puskesmas Digital?</h2>
+                    <ul class="mt-8 space-y-4">
+                        <li class="flex items-center gap-4 font-bold text-slate-700">
+                            <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">✓</div>
+                            Pendaftaran Mandiri (Self Service)
+                        </li>
+                        <li class="flex items-center gap-4 font-bold text-slate-700">
+                            <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">✓</div>
+                            Update Antrian via Layar Monitor TV
+                        </li>
+                        <li class="flex items-center gap-4 font-bold text-slate-700">
+                            <div class="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-primary">✓</div>
+                            Integrasi Rekam Medis Digital
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-primary-light rounded-[2.5rem] p-8 text-center border-2 border-dashed border-primary/30">
+                     <p class="text-primary-dark font-medium italic">"Kesehatan Anda adalah prioritas utama kami. Dengan sistem digital, kami memastikan setiap menit waktu Anda sangat berharga."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="bg-slate-900 text-white pt-20 pb-10 px-6">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-12 border-b border-slate-800 pb-16">
+            <div>
+                <h3 class="text-2xl font-black italic">RSUD <span class="text-primary">DIGITAL</span></h3>
+                <p class="text-slate-400 mt-4 leading-relaxed">Melayani dengan sepenuh hati melalui inovasi teknologi untuk kesehatan bangsa.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-4">Navigasi Cepat</h4>
+                <ul class="space-y-2 text-slate-400">
+                    <li><a href="/" class="hover:text-primary transition-colors">Beranda</a></li>
+                    <li><a href="/user" class="hover:text-primary transition-colors">Ambil Antrian</a></li>
+                    <li><a href="/display" class="hover:text-primary transition-colors">Monitor TV</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-4">Hubungi Kami</h4>
+                <p class="text-slate-400 text-sm">Jl. Kesehatan Raya No. 123, Kota Digital</p>
+                <p class="text-slate-400 text-sm mt-2">Email: info@puskesmasdigital.id</p>
+            </div>
+        </div>
+        <div class="text-center mt-10 text-slate-500 text-xs tracking-widest uppercase">
+            &copy; 2024 Puskesmas Digital. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<style>
+    .text-fill-color { -webkit-text-fill-color: transparent; }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+</style>
+{% endblock %}

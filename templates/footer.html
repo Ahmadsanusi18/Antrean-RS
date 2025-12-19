@@ -1,0 +1,61 @@
+<!-- ========================================
+     Author    : Ahmad Sanusi
+     Instagram : @a.saan_
+     ======================================== -->
+
+
+<footer class="fixed bottom-0 left-0 w-full bg-slate-900 h-12 flex items-center overflow-hidden border-t border-slate-800 z-[100] shadow-[0_-10px_25px_-5px_rgba(0,0,0,0.3)]">
+    <div class="bg-[#129990] px-10 h-full flex items-center z-40 font-black text-white italic text-lg tracking-tighter shadow-[10px_0_30px_rgba(0,0,0,0.5)] relative">
+        PENGUMUMAN
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+    </div>
+
+    <div class="flex-grow overflow-hidden bg-slate-900/50 backdrop-blur-sm">
+        <div class="marquee-content flex">
+            <div class="flex items-center italic text-white text-xl font-bold whitespace-nowrap py-2">
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Puskesmas Digital: Layanan Kesehatan Lebih Cepat</span>
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Mohon menunggu dengan tertib</span>
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Utamakan lansia, ibu hamil, dan disabilitas</span>
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Gunakan masker jika diperlukan</span>
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Terima kasih atas kunjungan Anda</span>
+                
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Puskesmas Digital: Layanan Kesehatan Lebih Cepat</span>
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Mohon menunggu dengan tertib</span>
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Utamakan lansia, ibu hamil, dan disabilitas</span>
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Gunakan masker jika diperlukan</span>
+                <span class="mx-4 text-[#129990]">•</span>
+                <span>Terima kasih atas kunjungan Anda</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .marquee-content {
+        display: flex;
+        width: max-content;
+        /* Kecepatan diatur 40s agar lebih nyaman dibaca pasien lansia */
+        animation: marquee 40s linear infinite;
+    }
+
+    /* Optimalisasi performa: menggunakan 3D transform agar diproses GPU */
+    @keyframes marquee {
+        0% { transform: translate3d(0, 0, 0); }
+        100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* Mencegah stuttering/lag pada teks panjang */
+    .marquee-content div {
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+</style>

@@ -1,0 +1,167 @@
+<!-- ========================================
+     Author    : Ahmad Sanusi
+     Instagram : @a.saan_
+     ======================================== -->
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Antrian - Puskesmas Digital</title>
+
+    <!-- ⏱️ AUTO REFRESH LEBIH CEPAT (5 DETIK) -->
+    <meta http-equiv="refresh" content="5">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            cursor: none;
+            overflow: hidden;
+            user-select: none;
+            background-color: #f8fafc; 
+            font-family: 'Inter', sans-serif;
+        }
+
+        .number-gradient {
+            background: none;
+            background-clip: unset;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: #000000;
+            color: #000000;
+            font-weight: 900;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 min-h-screen flex flex-col relative">
+
+<!-- JAM -->
+<div class="absolute top-12 right-14 z-20 text-right">
+    <div id="clock" class="text-3xl font-black tabular-nums">
+        00:00:00
+    </div>
+    <div id="date" class="text-[10px] text-primary font-bold uppercase tracking-[0.2em] mt-2">
+        Memuat…
+    </div>
+</div>
+
+<!-- MAIN -->
+<main class="flex-grow flex items-center justify-center p-6">
+   
+    <div class="w-full max-w-2xl bg-white border border-slate-200 rounded-[3.5rem] p-14 text-center shadow-2xl shadow-slate-200/50">
+        
+        <div class="inline-block px-6 py-2 bg-primarytext-primary rounded-full
+                    text-lg font-black uppercase tracking-widest mb-8">
+            {{ data.poli }}
+        </div>
+
+        <div class="mb-10">
+            <p class="text-[11px] text-slate-400 uppercase tracking-[0.5em] mb-4 font-bold">
+                Nomor Antrian
+            </p>
+            <h1 id="dipanggil" class="text-[13rem] font-black leading-none number-gradient">
+                {{ data.dipanggil }}
+            </h1>
+        </div>
+
+        <div class="flex items-center justify-center gap-6">
+            <div class="flex-1 px-8 py-5 bg-slate-50 rounded-3xl border border-slate-100
+                        flex items-center justify-center gap-4">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <p class="text-slate-700 font-bold text-lg uppercase tracking-wider italic">
+                    Dipanggil
+                </p>
+            </div>
+            
+            <div class="flex-1 px-10 py-5 bg-slate-800 rounded-3xl text-center shadow-lg">
+                <p class="text-[10px] text-slate-400 uppercase font-bold mb-1 tracking-widest">
+                    Antrian Berikutnya
+                </p>
+                <p class="text-white text-3xl font-black tabular-nums">
+                    {{ data.berikutnya }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</main>
+ {% include "footer.html" %}
+ <script>
+async function fetchAntrian() {
+    try {
+        const res = await fetch('/display', { headers: { 'X-Requested-With': 'XMLHttpRequest' } });
+        const data = await res.json();
+        document.getElementById('dipanggil').textContent = data.dipanggil;
+        document.getElementById('poli-name').textContent = data.poli;
+        document.getElementById('berikutnya').textContent = data.berikutnya;
+    } catch(err) {
+        console.error(err);
+    }
+}
+
+// update tiap 5 detik tanpa reload halaman
+setInterval(fetchAntrian, 5000);
+fetchAntrian();
+</script>
+<script>
+/* ======================
+   JAM & TANGGAL
+====================== */
+function updateClock() {
+    const now = new Date();
+    clock.textContent = now.toLocaleTimeString('id-ID', { hour12: false });
+    date.textContent = now.toLocaleDateString('id-ID', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+/* ======================
+   AUDIO STABIL CHROME
+====================== */
+let voice = null;
+
+function loadVoices() {
+    const voices = speechSynthesis.getVoices();
+    voice = voices.find(v => v.lang === "id-ID") || voices[0];
+}
+speechSynthesis.onvoiceschanged = loadVoices;
+loadVoices();
+
+window.addEventListener("load", () => {
+    const poli  = "{{ data.poli }}";
+    const nomor = "{{ data.dipanggil }}";
+
+    if (!nomor || nomor === "-") return;
+
+    const last = localStorage.getItem("last_called");
+
+    // 🔒 Jangan ulang suara jika nomor sama
+    if (last === nomor) return;
+
+    const msg = new SpeechSynthesisUtterance(
+        `Nomor antrian ${nomor.split('').join(' ')}, silakan menuju ${poli}`
+    );
+    msg.lang  = "id-ID";
+    msg.voice = voice;
+    msg.rate  = 0.85;
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(msg);
+
+    localStorage.setItem("last_called", nomor);
+});
+</script>
+
+
+
+</body>
+</html>

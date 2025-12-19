@@ -1,0 +1,243 @@
+<!-- ========================================
+     Author    : Ahmad Sanusi
+     Instagram : @a.saan_
+     ======================================== -->
+
+
+{% extends "navbar.html" %}
+{% block content %}
+
+<div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+
+<div class="max-w-7xl mx-auto pt-10 pb-20 px-4 md:px-8">
+    <header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e7f5f4] border border-[#129990]/20 mb-3">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#129990] opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-[#129990]"></span>
+                </span>
+                <span class="text-[10px] font-bold text-[#129990] uppercase tracking-wider">Unit Management</span>
+            </div>
+            <h1 class="text-3xl font-black text-slate-800 tracking-tight">Manajemen Poli</h1>
+            <p class="text-slate-500 mt-1 font-medium">Kelola daftar departemen layanan kesehatan.</p>
+        </div>
+        
+        <form id="formTambah" class="flex gap-2 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm w-full md:w-auto">
+            <input type="text" name="nama" id="inputNamaBaru" placeholder="Nama poli baru..."
+                class="flex-1 md:w-64 px-4 py-2 outline-none text-sm font-bold text-slate-700 placeholder:text-slate-300" required>
+            <button type="submit" 
+                class="bg-[#129990] hover:bg-[#0e7a73] text-white px-6 py-2.5 rounded-xl text-xs font-black transition-all shadow-md shadow-[#129990]/20 active:scale-95 uppercase tracking-widest">
+                Tambah
+            </button>
+        </form>
+    </header>
+
+    <div class="overflow-hidden shadow-sm border border-slate-200 rounded-[2rem] bg-white">
+        <table class="w-full text-left border-collapse">
+            <thead class="bg-slate-50 border-b border-slate-100">
+                <tr>
+                    <th class="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest w-24 text-center">No</th>
+                    <th class="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest">Nama Poliklinik</th>
+                    <th class="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-widest text-right">Aksi Manajemen</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyPoli" class="divide-y divide-slate-50">
+                {% for s in polies %}
+                <tr id="row-{{ s['id'] }}" class="hover:bg-[#e7f5f4]/30 transition-colors group">
+                    <td class="px-8 py-5 text-center row-number">
+                        <span class="text-sm font-black text-slate-300 group-hover:text-[#129990] transition-colors font-mono">{{ loop.index }}</span>
+                    </td>
+                    <td class="px-8 py-5">
+                        <span class="text-lg font-extrabold text-slate-800 tracking-tight poli-nama">{{ s['nama'] }}</span>
+                    </td>
+                    <td class="px-8 py-5 text-right">
+                        <div class="flex justify-end gap-3">
+                            <button class="btn-edit w-10 h-10 flex items-center justify-center bg-white border border-slate-200 text-amber-500 rounded-xl hover:bg-amber-500 hover:text-white transition-all shadow-sm active:scale-90"
+                                data-id="{{ s['id'] }}" data-nama="{{ s['nama'] }}">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                            </button>
+                            <button class="btn-delete w-10 h-10 flex items-center justify-center bg-white border border-slate-200 text-rose-500 rounded-xl hover:bg-rose-500 hover:text-white transition-all shadow-sm active:scale-90"
+                                data-id="{{ s['id'] }}" data-nama="{{ s['nama'] }}">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="modalOverlay" class="fixed inset-0 bg-slate-900/60 hidden z-[110] items-center justify-center p-4">
+    <div id="editModal" class="hidden bg-white w-full max-w-sm rounded-[2rem] shadow-2xl overflow-hidden">
+        <div class="px-8 pt-8 pb-4 text-center">
+            <div class="w-16 h-16 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">✏️</div>
+            <h3 class="text-xl font-black text-slate-800 tracking-tight">Perbarui Nama Poli</h3>
+        </div>
+        <div class="px-8 py-4">
+            <input id="editNama" type="text" class="w-full bg-slate-50 border-2 border-slate-100 px-5 py-3 rounded-2xl outline-none focus:border-[#129990] focus:bg-white text-slate-800 font-bold transition-all">
+        </div>
+        <div class="p-6 flex gap-3">
+            <button onclick="closeModal()" class="flex-1 py-3 text-slate-400 font-bold text-xs uppercase tracking-widest hover:text-slate-600 transition-colors">Batal</button>
+            <button id="btnSave" class="flex-[2] bg-[#129990] text-white font-black py-4 rounded-2xl text-xs uppercase tracking-widest shadow-lg shadow-[#129990]/20 active:scale-95 transition-all">Simpan</button>
+        </div>
+    </div>
+
+    <div id="deleteModal" class="hidden bg-white w-full max-w-sm rounded-[2rem] shadow-2xl overflow-hidden">
+        <div class="p-8 text-center">
+            <div class="w-16 h-16 bg-rose-50 text-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-4 text-2xl">⚠️</div>
+            <h3 class="text-xl font-black text-slate-800 tracking-tight">Hapus Poli?</h3>
+            <p class="text-slate-400 mt-2 text-sm font-medium">Anda akan menghapus <span id="deleteTargetName" class="font-bold text-slate-700"></span>.</p>
+        </div>
+        <div class="p-6 bg-slate-50 flex gap-3">
+            <button onclick="closeModal()" class="flex-1 py-4 bg-white border border-slate-200 text-slate-500 font-black rounded-2xl text-[10px] uppercase tracking-widest">Batal</button>
+            <button id="btnConfirmDelete" class="flex-1 py-4 bg-rose-500 text-white font-black rounded-2xl text-[10px] uppercase tracking-widest shadow-lg shadow-rose-200 active:scale-95">Ya, Hapus</button>
+        </div>
+    </div>
+   
+</div>
+
+<script>
+let currentEditId = null;
+let currentDeleteId = null;
+
+/* ========== NOTIFIKASI SOLID WARNA ========== */
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    
+    // Warna Solid
+    const bgColor = type === 'success' ? 'bg-emerald-600' : 'bg-rose-600';
+    
+    toast.className = `${bgColor} px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 transition-all duration-500 transform translate-x-12 opacity-0 pointer-events-auto min-w-[280px]`;
+    
+    toast.innerHTML = `
+        <div class="bg-white/20 p-1 rounded-full">
+            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                ${type === 'success' ? 
+                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>' : 
+                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path>'}
+            </svg>
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-white">${message}</span>
+    `;
+    
+    container.appendChild(toast);
+    setTimeout(() => { toast.classList.remove('translate-x-12', 'opacity-0'); }, 10);
+    setTimeout(() => { 
+        toast.classList.add('opacity-0', 'translate-y-2'); 
+        setTimeout(() => toast.remove(), 500); 
+    }, 3000);
+}
+
+function updateRowNumbers() {
+    document.querySelectorAll('.row-number span').forEach((el, index) => {
+        el.textContent = index + 1;
+    });
+}
+
+function openModal(id) {
+    document.getElementById('modalOverlay').classList.replace('hidden', 'flex');
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('modalOverlay').classList.replace('flex', 'hidden');
+    document.getElementById('editModal').classList.add('hidden');
+    document.getElementById('deleteModal').classList.add('hidden');
+}
+
+document.getElementById('formTambah').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const input = document.getElementById('inputNamaBaru');
+    const nama = input.value.trim();
+    
+    const res = await fetch('/admin/poli/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ nama })
+    });
+    
+    const data = await res.json();
+    if (data.success) { 
+        showToast('Poli Berhasil Ditambahkan', 'success');
+        input.value = '';
+        
+        const newRow = document.createElement('tr');
+        newRow.id = `row-${data.id}`;
+        newRow.className = "hover:bg-[#e7f5f4]/30 transition-colors group";
+        newRow.innerHTML = `
+            <td class="px-8 py-5 text-center row-number"><span class="text-sm font-black text-slate-300 group-hover:text-[#129990] transition-colors font-mono">0</span></td>
+            <td class="px-8 py-5"><span class="text-lg font-extrabold text-slate-800 tracking-tight poli-nama">${nama}</span></td>
+            <td class="px-8 py-5 text-right">
+                <div class="flex justify-end gap-3">
+                    <button class="btn-edit w-10 h-10 flex items-center justify-center bg-white border border-slate-200 text-amber-500 rounded-xl hover:bg-amber-500 hover:text-white transition-all shadow-sm active:scale-90" data-id="${data.id}" data-nama="${nama}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                    </button>
+                    <button class="btn-delete w-10 h-10 flex items-center justify-center bg-white border border-slate-200 text-rose-500 rounded-xl hover:bg-rose-500 hover:text-white transition-all shadow-sm active:scale-90" data-id="${data.id}" data-nama="${nama}">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                    </button>
+                </div>
+            </td>
+        `;
+        document.getElementById('tbodyPoli').appendChild(newRow);
+        updateRowNumbers();
+    } else {
+        showToast('Gagal Menambahkan Poli', 'error');
+    }
+});
+
+document.addEventListener('click', (e) => {
+    const editBtn = e.target.closest('.btn-edit');
+    const deleteBtn = e.target.closest('.btn-delete');
+
+    if (editBtn) {
+        currentEditId = editBtn.dataset.id;
+        document.getElementById('editNama').value = editBtn.dataset.nama;
+        openModal('editModal');
+    }
+    if (deleteBtn) {
+        currentDeleteId = deleteBtn.dataset.id;
+        document.getElementById('deleteTargetName').textContent = deleteBtn.dataset.nama;
+        openModal('deleteModal');
+    }
+});
+
+document.getElementById('btnSave').addEventListener('click', async () => {
+    const nama = document.getElementById('editNama').value.trim();
+    if (!nama) return;
+    const res = await fetch(`/admin/poli/edit/${currentEditId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ nama })
+    });
+    const data = await res.json();
+    if (data.success) {
+        const row = document.querySelector(`#row-${currentEditId}`);
+        row.querySelector('.poli-nama').textContent = nama;
+        row.querySelector('.btn-edit').dataset.nama = nama;
+        row.querySelector('.btn-delete').dataset.nama = nama;
+        showToast('Poli Berhasil Diperbarui', 'success');
+        closeModal();
+    } else {
+        showToast('Gagal Memperbarui', 'error');
+    }
+});
+
+document.getElementById('btnConfirmDelete').addEventListener('click', async () => {
+    const res = await fetch(`/admin/poli/delete/${currentDeleteId}`, { method: 'DELETE' });
+    const data = await res.json();
+    if (data.success) {
+        document.getElementById(`row-${currentDeleteId}`).remove();
+        updateRowNumbers();
+        showToast('Poli Telah Dihapus', 'error');
+        closeModal();
+    } else {
+        showToast('Gagal Menghapus Poli', 'error');
+    }
+});
+</script>
+
+{% endblock %}
