@@ -43,24 +43,24 @@ Sistem Antrian Puskesmas Digital adalah aplikasi berbasis web menggunakan **Pyth
 ## ⚙️ Instalasi & Menjalankan Aplikasi
 
 ### 1️⃣ Clone / Download Project
-    ```bash
-        git clone https://github.com/username/antrian-puskesmas.git
-        cd 
-    ```
+   
+        git clone https://github.com/Ahmadsanusi18/Antrean-RS.git
+        cd Antrean-RS
+   
 ### 2️⃣ Aktifkan Virtual Environment
-    ```bash
+    
     python -m venv venv
     source venv/bin/activate   # Linux / Mac
     venv\Scripts\activate 
-    ```
+    
 ### 3️⃣ Install Dependency
-    ```bash
+   
     pip install flask
-    ```
+    
 ### 4️⃣ Jalankan Aplikasi
-    ```bash
+    
     python app.py
-    ```
+   
 ### 🔊 Fitur Suara Antrian
 
 - Bahasa Indonesia (id-ID)
